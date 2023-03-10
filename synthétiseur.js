@@ -45,7 +45,7 @@ app.post('/generate', (req, res) => {
           return res.send(`OpenAI API error: ${body.error.message}`);
       }
   
-      const response_text = '<center><h2>Résultat :</h2></center><br><p style="color:white; font-size: 20px;">'+ body.choices[0].message.content +'</p>';
+      const response_text = '<center><h2>Résultat :</h2 style="font-weight: 600; font-size: 2vw; color:white;"></center><br><p style="color:white; font-size: 20px;">'+ body.choices[0].message.content +'</p>';
       console.log(body.choices[0])
       res.send(response_text);
       console.log(response_text )
