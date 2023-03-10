@@ -48,7 +48,7 @@ app.post('/generate', (req, res) => {
       const response_text = body.choices[0].message.content;
       console.log(body.choices[0])
       res.send(response_text);
-      console.log("<p class="apireturn">"+ response_text +"<p>")
+      console.log("<p class="apireturn">"+ response_text +"</p>")
   });
   
   
