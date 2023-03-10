@@ -1,0 +1,17 @@
+{
+  "name": "SynHelper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "synthétiseur.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OfisHelper",
+  "license": "ISC"
+}
