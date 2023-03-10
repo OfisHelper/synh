@@ -4,6 +4,26 @@
     <meta charset="utf-8">
     <title>SynHelper - OfisHelper | GPT-3.5-Turbo API </title>
     <link rel="stylesheet" href="style.css">
+      <script>$(function() {
+  var btn = $(".btn");
+  
+  btn.on("click", function() {
+    
+    $(this).addClass('btn-progress');
+    setTimeout(function() {
+      btn.addClass('btn-fill')
+    }, 500);
+    
+    setTimeout(function() {
+      btn.removeClass('btn-fill')
+    }, 4100);
+    
+    setTimeout(function() {
+      btn.addClass('btn-complete')
+    }, 4100);
+  
+  });
+})</script>
   </head>
   <body>
     <center>
@@ -41,14 +61,7 @@
      </svg>
           </div>
       </button>
-      <button type="submit">Synthétiser le texte</button>
-      <script>let btn = document.querySelector("button");
-
-        btn.addEventListener("click", active);
-        
-        function active() {
-          btn.classList.toggle("is_active");
-        }</script>
+      <button type="submit" class="btn">Synthétiser le texte</button>
     </form>
     <div id="result"></div>
     <script src="script.js"></script>
