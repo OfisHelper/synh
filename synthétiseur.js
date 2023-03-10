@@ -3,7 +3,7 @@ const app = express();
 const request = require('request');
 const path = require('path');
 
-const OPENAI_API_KEY = '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'; // à remplacer par votre clé API OpenAI
+const OPENAI_API_KEY = process.env.TOKEN; // à remplacer par votre clé API OpenAI
 
 const port = 3000;
 
