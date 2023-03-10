@@ -10,9 +10,9 @@
     <h2>Synthétiseur de Texte</h2>
     <form action="/generate" method="post">
       <h3 for="article_text"></h3>
-      <textarea placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+      <textarea required="required" placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
       <h3>Selectionée la longueur du texte final :</h3>
-      <div>
+      <div required="required">
         <label class="rad-label">
           <input type="radio" class="rad-input" id="rapide" name="style" value="Rapide">
           <div class="rad-design"></div>
