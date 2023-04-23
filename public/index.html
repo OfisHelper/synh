@@ -18,13 +18,13 @@
           <div class="rad-design"></div>
           <div class="rad-text">Court</div>
         </label>
-      
+
         <label class="rad-label">
           <input type="radio" class="rad-input" id="moyen" name="style" value="Moyen">
           <div class="rad-design"></div>
           <div class="rad-text">Moyen</div>
         </label>
-      
+
         <label class="rad-label">
           <input type="radio" class="rad-input" id="long" name="style" value="Long">
           <div class="rad-design"></div>
@@ -32,14 +32,16 @@
         </label>
       </div>
       <br><br><br>
-      <button type="submit">Synthétiser le texte</button>
-      <script>let btn = document.querySelector("button");
-
-        btn.addEventListener("click", active);
-
-        function active() {
-          btn.classList.toggle("is_active");
-        }</script>
+      <button id="generate-button" type="submit">Synthétiser le texte</button>
+      <div id="loader"></div>
+      <script>
+        const generateButton = document.querySelector("#generate-button");
+        const loader = document.querySelector("#loader");
+         generateButton.addEventListener("click", () => {
+      generateButton.style.display = "none";
+      loader.style.display = "inline-block";
+    });
+  </script>
       <button type="submit">Synthétiser le texte</button>
     </form>
     <div id="result"></div>
