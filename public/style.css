@@ -637,4 +637,8 @@ button{
   100% { transform: rotate(360deg); }
 }
 
+.copy ::selection {
+    background-color: #000000;
+    color: black;
+};
 
