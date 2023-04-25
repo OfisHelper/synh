@@ -50,9 +50,8 @@ app.post('/generate', (req, res) => {
 
 const response_text = `<center><h2 style="::selection {
     background-color: #000000;
-    color: #ffffff;
-}
-;font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
+    color: black;
+};font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
       console.log(body.choices[0])
       res.send(response_text);
       console.log(response_text )
