@@ -54,12 +54,30 @@ app.post('/generate', (req, res) => {
     });
 });
 
-// Route pour copier le texte en noir dans le presse-papiers
-app.post('/copy', (req, res) => {
-    const result = req.body.result;
+// Récupération du bouton de copie
+const copyButton = document.querySelector(".copy-button");
 
-    // Copie du texte en noir dans le presse-papiers
-    clipboardy.writeSync(result, {color: 'black'});
+// Ajout d'un écouteur d'événement pour le clic sur le bouton de copie
+copyButton.addEventListener("click", () => {
+    // Récupération du résultat synthétisé
+    const result = document.querySelector("#result").innerHTML;
+    
+    // Envoi d'une requête POST pour copier le texte en noir dans le presse-papiers
+    fetch("/copy", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({result: result})
+    }).then(() => {
+        // Affichage d'un message de confirmation de la copie
+        alert("Le texte a été copié dans le presse-papiers !");
+    }).catch((error) => {
+        console.error(error);
+        alert("Erreur lors de la copie du texte : " + error.message);
+    });
+});
+
 
     res.sendStatus(200);
 });
