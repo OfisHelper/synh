@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const request = require('request');
 const path = require('path');
-const clipboardy = require('clipboardy');
 
 const OPENAI_API_KEY = process.env.TOKEN ; // à remplacer par votre clé API OpenAI
 const port = 3000;
@@ -49,14 +48,21 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
-
-        // Copie du texte en noir dans le presse-papiers
-        clipboardy.writeSync(result, {color: 'black'});
+        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div><br><button onclick="copyToClipboard('result');" style="background-color: black; color: white; padding: 10px 20px; border-radius: 5px; font-size: 20px;">Copier en noir</button><br><br><p id="result" style="visibility:hidden;">${result}</p>`;
 
         res.send(response_text);
     });
-
 });
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
+
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    const range = document.createRange();
+    range.selectNode(element);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+}
