@@ -7,10 +7,10 @@ const OPENAI_API_KEY = process.env.TOKEN ; // à remplacer par votre clé API Op
 const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.post('/generate', (req, res) => {
@@ -22,7 +22,7 @@ app.post('/generate', (req, res) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': Bearer ${OPENAI_API_KEY}
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
         },
         json: {
             messages: [
@@ -39,21 +39,21 @@ app.post('/generate', (req, res) => {
       if (err) {
           return res.send('Error generating response');
       }
-
+  
       if (body.error) {
-          return res.send(OpenAI API error: ${body.error.message});
+          return res.send(`OpenAI API error: ${body.error.message}`);
       }
-
+  
       const result = body.choices[0].message.content.split('\n').map(line => {
-          return <p>${line}</p>;
+          return `<p>${line}</p>`;
       }).join('');
-
-      const response_text = <center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>;
+      
+      const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
       console.log(body.choices[0])
       res.send(response_text);
       console.log(response_text )
     });
-
+  
 });
 
 function onCopy(event) {
@@ -68,3 +68,4 @@ function onCopy(event) {
 }
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
+
