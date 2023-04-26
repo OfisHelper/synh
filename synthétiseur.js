@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const request = require('request');
 const path = require('path');
-const clipboardy = require('clipboardy');
 
 const OPENAI_API_KEY = process.env.TOKEN ; // à remplacer par votre clé API OpenAI
 const port = 3000;
