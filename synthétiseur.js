@@ -26,11 +26,9 @@ app.post('/generate', (req, res) => {
         },
         json: {
             messages: [
-                {"role": "system", "content": "Tu sert seulement à synthétiser des textes"},
-                {"role": "user", "content": article_text},
-                {"role": "system", "content": "de manière"},
-                {"role": "user", "content": style},
-            ],
+              {"role": "system", "content": "Tu sert seulement à synthétiser des textes"},
+              {"role": "user", "content": article_text + "de manière" + style} ,
+          ],
             model : "gpt-3.5-turbo",
             max_tokens: 500,
             temperature: 0.5
@@ -46,7 +44,7 @@ app.post('/generate', (req, res) => {
           return res.send(`OpenAI API error: ${body.error.message}`);
       }
   
-      const result = body.choices[0].text.split('\n').map(line => {
+      const result = body.choices[0].message.content.split('\n').map(line => {
           return `<p>${line}</p>`;
       }).join('');
       
@@ -70,4 +68,3 @@ function onCopy(event) {
 }
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
-
