@@ -10,7 +10,7 @@
     <h2>Synthétiseur de Texte</h2>
     <form action="/generate" method="post">
       <h3 for="article_text"></h3>
-      <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+      <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte à synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
       <h3>Longueur du texte final :</h3>
       <div>
         <label class="rad-label">
@@ -34,13 +34,34 @@
       <br><br><br>
       <button id="generate-button" type="submit">Synthétiser le texte</button>
       <div id="loader"></div>
+      <br><br>
+      <button id="copy-button" type="button" disabled>Copier en noir</button>
+      <br><br>
       <script>
         const generateButton = document.querySelector("#generate-button");
         const loader = document.querySelector("#loader");
+        const copyButton = document.querySelector("#copy-button");
+
         generateButton.addEventListener("click", () => {
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
+          copyButton.disabled = true;
         });
+
+        const copyText = () => {
+          const resultDiv = document.querySelector("#result");
+          const result = resultDiv.textContent;
+          navigator.clipboard.writeText(result).then(() => {
+            copyButton.textContent = "Copié !";
+            copyButton.disabled = true;
+            setTimeout(() => {
+              copyButton.textContent = "Copier en noir";
+              copyButton.disabled = false;
+            }, 2000);
+          });
+        };
+
+        copyButton.addEventListener("click", copyText);
       </script>
     </form>
     <div id="result"></div>
