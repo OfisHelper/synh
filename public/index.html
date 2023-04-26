@@ -40,28 +40,7 @@
       <script>
         const generateButton = document.querySelector("#generate-button");
         const loader = document.querySelector("#loader");
-        const copyButton = document.querySelector("#copy-button");
-
-        generateButton.addEventListener("click", () => {
-          generateButton.style.display = "none";
-          loader.style.display = "inline-block";
-          copyButton.disabled = true;
-        });
-
-        const copyText = () => {
-          const resultDiv = document.querySelector("#result");
-          const result = resultDiv.textContent;
-          navigator.clipboard.writeText(result).then(() => {
-            copyButton.textContent = "Copié !";
-            copyButton.disabled = true;
-            setTimeout(() => {
-              copyButton.textContent = "Copier en noir";
-              copyButton.disabled = false;
-            }, 2000);
-          });
-        };
-
-        copyButton.addEventListener("click", copyText);
+        
       </script>
     </form>
     <div id="result"></div>
