@@ -33,13 +33,18 @@
       </div>
       <br><br><br>
       <button id="generate-button" type="submit">Synthétiser le texte</button>
-      <div id="loader"></div>
+      <div id="loader" style="display: none;"></div>
       <script>
         const generateButton = document.querySelector("#generate-button");
         const loader = document.querySelector("#loader");
+        const resultDiv = document.querySelector("#result");
         generateButton.addEventListener("click", () => {
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
+        });
+        resultDiv.addEventListener("DOMSubtreeModified", () => {
+          generateButton.style.display = "block";
+          loader.style.display = "none";
         });
       </script>
     </form>
@@ -48,3 +53,4 @@
     </center>
   </body>
 </html>
+
