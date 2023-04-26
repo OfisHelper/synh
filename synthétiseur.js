@@ -44,12 +44,7 @@
       </script>
     </form>
     <div id="result"></div>
-    <div id="copy-button-container" style="display: none;">
-      <button id="copy-button" type="button">Copier le texte</button>
-      <span class="copied" style="position:absolute; right:-9999px"></span>
-    </div>
     <script src="script.js"></script>
     </center>
   </body>
 </html>
-
