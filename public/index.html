@@ -10,45 +10,41 @@
     <h2>Synthétiseur de Texte</h2>
     <form action="/generate" method="post">
       <h3 for="article_text"></h3>
-      <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte à synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+      <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
       <h3>Longueur du texte final :</h3>
       <div>
         <label class="rad-label">
-          <input type="radio" class="rad-input" id="rapide" name="style" value="50">
+          <input type="radio" class="rad-input" id="rapide" name="style" value="Rapide">
           <div class="rad-design"></div>
           <div class="rad-text">Court</div>
         </label>
-           <label class="rad-label">
-      <input type="radio" class="rad-input" id="moyen" name="style" value="200">
-      <div class="rad-design"></div>
-      <div class="rad-text">Moyen</div>
-    </label>
-  
-    <label class="rad-label">
-      <input type="radio" class="rad-input" id="long" name="style" value="500">
-      <div class="rad-design"></div>
-      <div class="rad-text">Long</div>
-    </label>
-  </div>
-  <br><br><br>
-  <button id="generate-button" type="submit">Synthétiser le texte</button>
-  <div id="loader" style="display: none;"></div>
-  <script>
-    const generateButton = document.querySelector("#generate-button");
-    const loader = document.querySelector("#loader");
-    const resultDiv = document.querySelector("#result");
-    generateButton.addEventListener("click", () => {
-      generateButton.style.display = "none";
-      loader.style.display = "inline-block";
-    });
-    resultDiv.addEventListener("DOMSubtreeModified", () => {
-      generateButton.style.display = "block";
-      loader.style.display = "none";
-    });
-  </script>
-</form>
-<div id="result"></div>
-<script src="script.js"></script>
-</center>
+      
+        <label class="rad-label">
+          <input type="radio" class="rad-input" id="moyen" name="style" value="Moyen">
+          <div class="rad-design"></div>
+          <div class="rad-text">Moyen</div>
+        </label>
+      
+        <label class="rad-label">
+          <input type="radio" class="rad-input" id="long" name="style" value="Long">
+          <div class="rad-design"></div>
+          <div class="rad-text">Long</div>
+        </label>
+      </div>
+      <br><br><br>
+      <button id="generate-button" type="submit">Synthétiser le texte</button>
+      <div id="loader"></div>
+      <script>
+        const generateButton = document.querySelector("#generate-button");
+        const loader = document.querySelector("#loader");
+        generateButton.addEventListener("click", () => {
+          generateButton.style.display = "none";
+          loader.style.display = "inline-block";
+        });
+      </script>
+    </form>
+    <div id="result"></div>
+    <script src="script.js"></script>
+    </center>
   </body>
 </html>
