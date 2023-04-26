@@ -45,33 +45,26 @@ app.post('/generate', (req, res) => {
       }
   
       const result = body.choices[0].message.content.split('\n').map(line => {
-        return `<p>${line}</p>`;
+          return `<p>${line}</p>`;
       }).join('');
-
+  
       const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
-      console.log(body.choices[0])
+      
+      // Ajout du texte dans un élément caché pour le copier ensuite
+      const copyText = document.createElement("textarea");
+      copyText.style.display = "none";
+      copyText.value = result;
+      document.body.appendChild(copyText);
+  
+      // Copie du texte en noir dans le presse-papiers
+      copyText.select();
+      copyText.style.color = "black";
+      document.execCommand("copy");
+  
       res.send(response_text);
-      console.log(response_text )
-
-      // Ajouter le texte à l'élément invisible dans la page pour pouvoir le copier
-      const hiddenDiv = document.createElement('div');
-      hiddenDiv.innerHTML = result.replace(/<p>/g, '').replace(/<\/p>/g, '\n');
-      hiddenDiv.style.position = 'absolute';
-      hiddenDiv.style.top = '-9999px';
-      document.body.appendChild(hiddenDiv);
-
-      // Sélectionner et copier le texte en noir
-      const range = document.createRange();
-      range.selectNode(hiddenDiv);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-      document.execCommand('copy');
-      window.getSelection().removeAllRanges();
-
-      // Retirer l'élément invisible de la page
-      document.body.removeChild(hiddenDiv);
   });
   
 });
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
+
