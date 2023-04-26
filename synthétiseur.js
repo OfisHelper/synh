@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const request = require('request');
 const path = require('path');
+const clipboardy = require('clipboardy');
 
 const OPENAI_API_KEY = process.env.TOKEN ; // à remplacer par votre clé API OpenAI
 const port = 3000;
@@ -48,21 +49,11 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div><br><button class="copy-button">Copier en noir</button>`;
+        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div><br><button onclick="copyToClipboard()" class="copy-button">Copier en noir</button><script>function copyToClipboard() {const result = "${result}";navigator.clipboard.writeText(result).then(() => {alert('Texte copié en noir dans le presse-papiers !')})}</script>`;
 
-        res.send(response_text);
+        res.send(`<script>document.getElementById('result').innerHTML='${response_text}'</script>`);
+
     });
 });
 
-// Route pour copier le texte en noir dans le presse-papiers
-app.post('/copy', (req, res) => {
-    const result = req.body.result;
-
-    // Copie du texte en noir dans le presse-papiers
-    clipboardy.writeSync(result, {color: 'black'});
-
-    res.sendStatus(200);
-});
-
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
-
