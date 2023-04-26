@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const request = require('request');
 const path = require('path');
+const clipboardy = require('clipboardy');
 
 const OPENAI_API_KEY = process.env.TOKEN ; // à remplacer par votre clé API OpenAI
 const port = 3000;
@@ -36,34 +37,26 @@ app.post('/generate', (req, res) => {
     };
 
     request(options, (err, response, body) => {
-      if (err) {
-          return res.send('Error generating response');
-      }
-  
-      if (body.error) {
-          return res.send(`OpenAI API error: ${body.error.message}`);
-      }
-  
-      const result = body.choices[0].message.content.split('\n').map(line => {
-          return `<p>${line}</p>`;
-      }).join('');
-  
-      const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
-      
-      // Ajout du texte dans un élément caché pour le copier ensuite
-      const copyText = document.createElement("textarea");
-      copyText.style.display = "none";
-      copyText.value = result;
-      document.body.appendChild(copyText);
-  
-      // Copie du texte en noir dans le presse-papiers
-      copyText.select();
-      copyText.style.color = "black";
-      document.execCommand("copy");
-  
-      res.send(response_text);
-  });
-  
+        if (err) {
+            return res.send('Error generating response');
+        }
+
+        if (body.error) {
+            return res.send(`OpenAI API error: ${body.error.message}`);
+        }
+
+        const result = body.choices[0].message.content.split('\n').map(line => {
+            return `<p>${line}</p>`;
+        }).join('');
+
+        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div style="color:white; font-size: 20px;">${result}</div>`;
+
+        // Copie du texte en noir dans le presse-papiers
+        clipboardy.writeSync(result, {color: 'black'});
+
+        res.send(response_text);
+    });
+
 });
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
