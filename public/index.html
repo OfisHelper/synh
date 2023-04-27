@@ -8,7 +8,7 @@
   <body>
     <center>
     <h2>Synthétiseur de Texte</h2>
-    <form id="synth-form" action="/generate" method="post" onsubmit="onSubmit(event)">
+    <form action="/generate" method="post">
       <h3 for="article_text"></h3>
       <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
       <h3>Longueur du texte final :</h3>
@@ -18,13 +18,13 @@
           <div class="rad-design"></div>
           <div class="rad-text">Court</div>
         </label>
-      
+
         <label class="rad-label">
           <input type="radio" class="rad-input" id="moyen" name="style" value="Moyen">
           <div class="rad-design"></div>
           <div class="rad-text">Moyen</div>
         </label>
-      
+
         <label class="rad-label">
           <input type="radio" class="rad-input" id="long" name="style" value="Long">
           <div class="rad-design"></div>
@@ -37,25 +37,10 @@
       <script>
         const generateButton = document.querySelector("#generate-button");
         const loader = document.querySelector("#loader");
-        const form = document.querySelector("#synth-form");
         generateButton.addEventListener("click", () => {
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
         });
-        function onSubmit(event) {
-          event.preventDefault();
-          const formData = new FormData(form);
-          const xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-              document.querySelector("#result").innerHTML = this.responseText;
-              generateButton.style.display = "block";
-              loader.style.display = "none";
-            }
-          };
-          xhr.open("POST", "/generate");
-          xhr.send(formData);
-        }
       </script>
     </form>
     <div id="result"></div>
