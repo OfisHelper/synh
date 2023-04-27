@@ -34,17 +34,27 @@
       <br><br><br>
       <button id="generate-button" type="submit">Synthétiser le texte</button>
       <div id="loader"></div>
-      <script>
-        const generateButton = document.querySelector("#generate-button");
-        const loader = document.querySelector("#loader");
-        generateButton.addEventListener("click", () => {
-          generateButton.style.display = "none";
-          loader.style.display = "inline-block";
-        });
-      </script>
     </form>
     <div id="result"></div>
-    <script src="script.js"></script>
-    </center>
+    <span class="copied"></span>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            const generateButton = $('#generate-button');
+            const loader = $('#loader');
+            const result = $('#result');
+            $('form').submit((event) => {
+                event.preventDefault();
+                const formData = $('form').serialize();
+                generateButton.hide();
+                loader.show();
+                $.post('/generate', formData, (data) => {
+                    loader.hide();
+                    result.html(data);
+                });
+            });
+        });
+    </script>
+  </center>
   </body>
 </html>
