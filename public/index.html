@@ -8,7 +8,7 @@
   <body>
     <center>
     <h2>Synthétiseur de Texte</h2>
-    <form action="/generate" method="post">
+    <form id="synth-form" action="/generate" method="post" onsubmit="onSubmit(event)">
       <h3 for="article_text"></h3>
       <textarea style="resize: none;" required="required" placeholder="Entrez ici le texte a Synthétiser..." rows="30" name="article_text" id="article_text" cols="60" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
       <h3>Longueur du texte final :</h3>
@@ -34,27 +34,32 @@
       <br><br><br>
       <button id="generate-button" type="submit">Synthétiser le texte</button>
       <div id="loader"></div>
+      <script>
+        const generateButton = document.querySelector("#generate-button");
+        const loader = document.querySelector("#loader");
+        const form = document.querySelector("#synth-form");
+        generateButton.addEventListener("click", () => {
+          generateButton.style.display = "none";
+          loader.style.display = "inline-block";
+        });
+        function onSubmit(event) {
+          event.preventDefault();
+          const formData = new FormData(form);
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+              document.querySelector("#result").innerHTML = this.responseText;
+              generateButton.style.display = "block";
+              loader.style.display = "none";
+            }
+          };
+          xhr.open("POST", "/generate");
+          xhr.send(formData);
+        }
+      </script>
     </form>
     <div id="result"></div>
-    <span class="copied"></span>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(() => {
-            const generateButton = $('#generate-button');
-            const loader = $('#loader');
-            const result = $('#result');
-            $('form').submit((event) => {
-                event.preventDefault();
-                const formData = $('form').serialize();
-                generateButton.hide();
-                loader.show();
-                $.post('/generate', formData, (data) => {
-                    loader.hide();
-                    result.html(data);
-                });
-            });
-        });
-    </script>
-  </center>
+    <script src="script.js"></script>
+    </center>
   </body>
 </html>
