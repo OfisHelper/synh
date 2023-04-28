@@ -53,6 +53,23 @@ app.post('/generate', (req, res) => {
       res.send(response_text);
       console.log(response_text )
     });
+    
+    // Ajouter le bouton "Copier le texte"
+const copyButton = document.createElement("button");
+copyButton.setAttribute("id", "copy-button");
+copyButton.textContent = "Copier le texte";
+resultDiv.appendChild(copyButton);
+
+// Ajouter l'événement de clic au bouton "Copier le texte"
+copyButton.addEventListener("click", () => {
+  const textToCopy = document.querySelector("#result-text").textContent;
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    alert("Le texte a été copié dans le presse-papiers !");
+  }, () => {
+    alert("Le texte n'a pas pu être copié !");
+  });
+});
+
   
 });
 
