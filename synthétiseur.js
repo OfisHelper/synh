@@ -54,6 +54,20 @@ app.post('/generate', (req, res) => {
       console.log(response_text )
     });
   
+   function copyText() {
+  /* Sélectionne le texte à copier */
+  var copyText = document.getElementById("response_text");
+
+  /* Sélectionne le contenu du champ texte */
+  copyText.select();
+
+  /* Copie le texte dans le presse-papiers */
+  document.execCommand("copy");
+
+  /* Affiche un message de confirmation */
+  alert("Texte copié: " + copyText.value);
+}
+
 });
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
