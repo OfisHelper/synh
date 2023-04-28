@@ -637,7 +637,8 @@ button{
   100% { transform: rotate(360deg); }
 }
 
-#copy-button {
+
+.copy-button {
   display: inline-block;
   background-color: #ffeba7;
   color: #333;
@@ -650,12 +651,12 @@ button{
   transition: all 0.3s ease-in-out;
 }
 
-#copy-button:hover {
+.copy-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#copy-button:active {
+.copy-button:active {
   transform: translateY(0px);
   box-shadow: none;
 }
