@@ -50,21 +50,15 @@
           copyButton.style.display = "none";
         });
 
-        function copyToClipboard() {
-          const range = document.createRange();
-          range.selectNode(resultDiv);
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(range);
-          document.execCommand("copy");
-          window.getSelection().removeAllRanges();
+               function copyText() {
+          const textToCopy = document.getElementById('myDiv').innerText;
+          const tempInput = document.createElement('input');
+          tempInput.value = textToCopy;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
         }
-
-        function displayCopyButton() {
-          copyButton.style.display = "inline-block";
-        }
-
-        copyButton.addEventListener("click", copyToClipboard);
-        resultDiv.addEventListener("mouseup", displayCopyButton);
         
       </script>
     </form>
