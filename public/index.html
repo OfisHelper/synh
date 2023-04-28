@@ -35,7 +35,6 @@
       <button id="generate-button" type="submit">Synthétiser le texte</button>
       <div id="loader"></div>
       <div id="result"></div>
-<button id="copy-button" class="styled-button" style="display:none;">Copier le texte en noir</button>
 
       <script>
         const generateButton = document.querySelector("#generate-button");
@@ -50,15 +49,6 @@
           copyButton.style.display = "none";
         });
 
-               function copyText() {
-          const textToCopy = document.getElementById('myDiv').innerText;
-          const tempInput = document.createElement('input');
-          tempInput.value = textToCopy;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand('copy');
-          document.body.removeChild(tempInput);
-        }
         
       </script>
     </form>
