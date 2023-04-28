@@ -62,31 +62,6 @@ app.post('/generate', (req, res) => {
   
 });
 
-function onCopy(event) {
-    event.preventDefault();
-    var text = window.getSelection().toString();
-    event.clipboardData.setData("text/plain", text);
-    event.clipboardData.setData("text/html", text);
-    document.querySelector(".copied").innerHTML = "Copié !";
-    setTimeout(() => {
-        document.querySelector(".copied").innerHTML = "";
-    }, 1500);
-}
-
-function copyResult() {
-    const resultElement = document.querySelector(".copy");
-    const range = document.createRange();
-    range.selectNodeContents(resultElement);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand("copy");
-    document.querySelector(".copied").innerHTML = "Copié !";
-    setTimeout(() => {
-        document.querySelector(".copied").innerHTML = "";
-    }, 1500);
-}
-
 const copyButton = document.querySelector("#copy-button");
 const generatedText = document.querySelector("#generated-text");
 
