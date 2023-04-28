@@ -54,5 +54,6 @@ app.post('/generate', (req, res) => {
       console.log(response_text )
     });
  
+    }
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
