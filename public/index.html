@@ -42,6 +42,16 @@
         const resultDiv = document.querySelector("#result");
         const copyButton = document.querySelector("#copy-button");
         
+           generateButton.addEventListener("click", () => {
+          generateButton.style.display = "none";
+          loader.style.display = "inline-block";
+          resultDiv.innerHTML = "";
+          copyButton.style.display = "none";
+        });
+
+     
+        resultDiv.addEventListener("mouseup", displayCopyButton);
+        
       </script>
     </form>
     <script src="script.js"></script>
