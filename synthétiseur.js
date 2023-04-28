@@ -87,4 +87,17 @@ function copyResult() {
     }, 1500);
 }
 
+const copyButton = document.querySelector("#copy-button");
+const generatedText = document.querySelector("#generated-text");
+
+copyButton.addEventListener("click", () => {
+  const range = document.createRange();
+  range.selectNode(generatedText);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+});
+
+
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
