@@ -57,7 +57,7 @@ app.post('/generate', (req, res) => {
         copyButton.addEventListener("click", () => {
             const resultText = document.querySelector(".copy").response_text;
             const copyText = document.createElement("textarea");
-            copyText.value = resultText;
+            copyText.value = response_text;
             document.body.appendChild(copyText);
             copyText.select();
             document.execCommand("copy");
