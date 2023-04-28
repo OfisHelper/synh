@@ -47,12 +47,7 @@ app.post('/generate', (req, res) => {
         const result = body.choices[0].message.content.split('\n').map(line => {
             return `<p>${line}</p>`;
         }).join('');
-
-        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id "MyDiv" style="font-size: 20px; color: white;">${result}</div><br><button onclick="copyText()">Copier le texte</button></center>`;
-        console.log(body.choices[0])
-        res.send(response_text);
-        console.log(response_text );
-
+        
         function copyText() {
           const textToCopy = document.getElementById('myDiv').innerText;
           const tempInput = document.createElement('input');
@@ -62,6 +57,12 @@ app.post('/generate', (req, res) => {
           document.execCommand('copy');
           document.body.removeChild(tempInput);
         }
+
+        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id "MyDiv" style="font-size: 20px; color: white;">${result}</div><br><button onclick="copyText()">Copier le texte</button></center>`;
+        console.log(body.choices[0])
+        res.send(response_text);
+        console.log(response_text );
+
        
     });
 
