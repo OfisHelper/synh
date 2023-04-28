@@ -66,3 +66,5 @@ function onCopy(event) {
         document.querySelector(".copied").innerHTML = "";
     }, 1500);
 }
+
+app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
