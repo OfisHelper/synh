@@ -658,14 +658,14 @@ button{
 }
 
 .copy-button:hover{
-  border: 3px solid #ffab3c !important;
-  background: #f0f0f0 !important;
-  color: #ffab3c !important;
+  border: 3px solid #ffab3c;
+  background: #f0f0f0;
+  color: #ffab3c;
 }
 
 .copy-button span{
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1 ;
+  visibility: visible ;
   transition: all .35s;
 }
 
