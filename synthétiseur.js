@@ -48,7 +48,7 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2></center> <br> <svg><text style="fill: white;"><div style="font-size: 20px;">${result}</div></text></svg>`;
+        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2></center> <br> <div style="font-size: 20px; color: white; user-select: text;">${result}</div>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
