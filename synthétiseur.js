@@ -58,7 +58,7 @@ app.post('/generate', (req, res) => {
           document.body.removeChild(tempInput);
         }
 
-        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id "MyDiv" style="font-size: 20px; color: white;">${result}</div><br><button onclick="copyText()">Copier le texte</button></center>`;
+        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button onclick="copyText()">Copier le texte</button></center>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
