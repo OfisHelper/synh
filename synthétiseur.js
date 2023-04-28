@@ -26,9 +26,9 @@ app.post('/generate', (req, res) => {
         },
         json: {
             messages: [
-              {"role": "system", "content": "Tu sert seulement à synthétiser des textes"},
-              {"role": "user", "content": article_text + "de manière" + style} ,
-          ],
+                {"role": "system", "content": "Tu sert seulement à synthétiser des textes"},
+                {"role": "user", "content": article_text + "de manière" + style} ,
+            ],
             model : "gpt-3.5-turbo",
             max_tokens: 500,
             temperature: 0.5
@@ -36,41 +36,23 @@ app.post('/generate', (req, res) => {
     };
 
     request(options, (err, response, body) => {
-      if (err) {
-          return res.send('Error generating response');
-      }
-  
-      if (body.error) {
-          return res.send(`OpenAI API error: ${body.error.message}`);
-      }
-  
-      const result = body.choices[0].message.content.split('\n').map(line => {
-          return `<p>${line}</p>`;
-      }).join('');
-      
-      const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
-      console.log(body.choices[0])
-      res.send(response_text);
-      console.log(response_text )
+        if (err) {
+            return res.send('Error generating response');
+        }
+
+        if (body.error) {
+            return res.send(`OpenAI API error: ${body.error.message}`);
+        }
+
+        const result = body.choices[0].message.content.split('\n').map(line => {
+            return `<p>${line}</p>`;
+        }).join('');
+
+        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
+        console.log(body.choices[0])
+        res.send(response_text);
+        console.log(response_text )
     });
-    
-    // Ajouter le bouton "Copier le texte"
-const copyButton = document.createElement("button");
-copyButton.setAttribute("id", "copy-button");
-copyButton.textContent = "Copier le texte";
-resultDiv.appendChild(copyButton);
-
-// Ajouter l'événement de clic au bouton "Copier le texte"
-copyButton.addEventListener("click", () => {
-  const textToCopy = document.querySelector("#result-text").textContent;
-  navigator.clipboard.writeText(textToCopy).then(() => {
-    alert("Le texte a été copié dans le presse-papiers !");
-  }, () => {
-    alert("Le texte n'a pas pu être copié !");
-  });
-});
-
-  
 });
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
