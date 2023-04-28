@@ -48,31 +48,13 @@ app.post('/generate', (req, res) => {
           return `<p>${line}</p>`;
       }).join('');
       
-      const response_text = `
-          <center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center>
-          <br>
-          <div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div>
-          <span class="copied" style="position:absolute; right:-9999px"></span>
-          <button id="copy-button" onclick="copyResult()">Copier le résultat</button>
-      `;
+      const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
       console.log(body.choices[0])
       res.send(response_text);
       console.log(response_text )
     });
   
 });
-
-const copyButton = document.querySelector("#copy-button");
-const generatedText = document.querySelector("#generated-text");
-
-copyButton.addEventListener("click", () => {
-  const range = document.createRange();
-  range.selectNode(generatedText);
-  window.getSelection().removeAllRanges();
-  window.getSelection().addRange(range);
-  document.execCommand("copy");
-  window.getSelection().removeAllRanges();
-});
-
+}
 
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
