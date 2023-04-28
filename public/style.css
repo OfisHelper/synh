@@ -637,34 +637,3 @@ button{
   100% { transform: rotate(360deg); }
 }
 
-copyButton{
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    width: 240px;
-    height: 40px;
-    line-height: 1;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    background: #ffab3c;
-    color: #f0f0f0;
-    border-radius: 40px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all .35s;
-    border: 0px solid #ffab3c;
-  }
-
-  copyButton{
-    border: 3px solid #ffab3c;
-    background: #f0f0f0;
-    color: #ffab3c;
-  }
-
-  copyButton{
-    opacity: 1;
-    visibility: visible;
-    transition: all .35s;
-  }
-
