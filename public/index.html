@@ -34,30 +34,39 @@
       <br><br><br>
       <button id="generate-button" type="submit">Synthétiser le texte</button>
       <div id="loader"></div>
+      <div id="result"></div>
+      <button id="copy-button" style="display:none;">Copier le texte en noir</button>
       <script>
         const generateButton = document.querySelector("#generate-button");
         const loader = document.querySelector("#loader");
+        const resultDiv = document.querySelector("#result");
+        const copyButton = document.querySelector("#copy-button");
+
         generateButton.addEventListener("click", () => {
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
+          resultDiv.innerHTML = "";
+          copyButton.style.display = "none";
         });
 
-        const copyButton = document.querySelector("#copy-button");
-        const resultDiv = document.querySelector("#result");
-        copyButton.addEventListener("click", () => {
+        function copyToClipboard() {
           const range = document.createRange();
           range.selectNode(resultDiv);
           window.getSelection().removeAllRanges();
           window.getSelection().addRange(range);
           document.execCommand("copy");
           window.getSelection().removeAllRanges();
-        });
+        }
+
+        function displayCopyButton() {
+          copyButton.style.display = "inline-block";
+        }
+
+        copyButton.addEventListener("click", copyToClipboard);
+        resultDiv.addEventListener("mouseup", displayCopyButton);
       </script>
     </form>
-    <div id="result"></div>
     <script src="script.js"></script>
-    <button id="copy-button" style="display:none;">Copier le texte en noir</button>
     </center>
   </body>
 </html>
-
