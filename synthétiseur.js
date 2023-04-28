@@ -54,25 +54,25 @@ app.post('/generate', (req, res) => {
         console.log(response_text )
     });
     
-    const resultDiv = document.querySelector("#result");
-const copyButton = document.querySelector("#copy-button");
+    const resultDiv = response_text.querySelector("#result");
+const copyButton = response_text.querySelector("#copy-button");
 
 resultDiv.addEventListener("click", () => {
-  const range = document.createRange();
+  const range = response_text.createRange();
   range.selectNode(resultDiv);
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
-  document.execCommand("copy");
+  response_text.execCommand("copy");
   window.getSelection().removeAllRanges();
   copyButton.style.display = "inline-block";
 });
 
 copyButton.addEventListener("click", () => {
-  const range = document.createRange();
+  const range = response_text.createRange();
   range.selectNode(resultDiv);
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
-  document.execCommand("copy");
+  response_text.execCommand("copy");
   window.getSelection().removeAllRanges();
 });
 
