@@ -56,4 +56,15 @@ app.post('/generate', (req, res) => {
   
 });
 
+function onCopy(event) {
+    event.preventDefault();
+    var text = window.getSelection().toString();
+    event.clipboardData.setData("text/plain", text);
+    event.clipboardData.setData("text/html", text);
+    document.querySelector(".copied").innerHTML = "Copié !";
+    setTimeout(() => {
+        document.querySelector(".copied").innerHTML = "";
+    }, 1500);
+}
+
 app.listen(process.env.PORT || port, () => console.log('Listening on port 3000'));
