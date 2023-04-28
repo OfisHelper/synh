@@ -638,7 +638,7 @@ button{
 }
 
 
-.copy-button {
+.styled-button {
   display: inline-block;
   background-color: #ffeba7;
   color: #333;
@@ -651,12 +651,12 @@ button{
   transition: all 0.3s ease-in-out;
 }
 
-.copy-button:hover {
+.styled-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.copy-button:active {
+.styled-button:active {
   transform: translateY(0px);
   box-shadow: none;
 }
