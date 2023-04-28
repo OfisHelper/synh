@@ -41,6 +41,22 @@
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
         });
+        <script>
+function copyText() {
+  /* Sélectionne le texte à copier */
+  var copyText = document.getElementById("result-text");
+
+  /* Sélectionne le contenu du champ texte */
+  copyText.select();
+
+  /* Copie le texte dans le presse-papiers */
+  document.execCommand("copy");
+
+  /* Affiche un message de confirmation */
+  alert("Texte copié: " + copyText.value);
+}
+</script>
+
         <button id="copy-btn" onclick="copyText()">Copy to Clipboard</button>
       </script>
     </form>
