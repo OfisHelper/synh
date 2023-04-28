@@ -650,12 +650,12 @@ text-decoration: none;
 transition: all 0.3s ease-in-out;
 }
 
-.styled-button:hover {
+button:hover {
 transform: translateY(-2px);
 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.styled-button:active {
+button:active {
 transform: translateY(0px);
 box-shadow: none;
 }
