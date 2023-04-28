@@ -48,7 +48,13 @@ app.post('/generate', (req, res) => {
           return `<p>${line}</p>`;
       }).join('');
       
-      const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
+      const response_text = `
+          <center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center>
+          <br>
+          <div class="copy" style="color:white; font-size: 20px;" oncopy="onCopy(event)">${result}</div>
+          <span class="copied" style="position:absolute; right:-9999px"></span>
+          <button id="copy-button" onclick="copyResult()">Copier le résultat</button>
+      `;
       console.log(body.choices[0])
       res.send(response_text);
       console.log(response_text )
@@ -61,6 +67,20 @@ function onCopy(event) {
     var text = window.getSelection().toString();
     event.clipboardData.setData("text/plain", text);
     event.clipboardData.setData("text/html", text);
+    document.querySelector(".copied").innerHTML = "Copié !";
+    setTimeout(() => {
+        document.querySelector(".copied").innerHTML = "";
+    }, 1500);
+}
+
+function copyResult() {
+    const resultElement = document.querySelector(".copy");
+    const range = document.createRange();
+    range.selectNodeContents(resultElement);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
     document.querySelector(".copied").innerHTML = "Copié !";
     setTimeout(() => {
         document.querySelector(".copied").innerHTML = "";
