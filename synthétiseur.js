@@ -53,23 +53,7 @@ app.post('/generate', (req, res) => {
         res.send(response_text);
         console.log(response_text );
 
-        const copyButton = document.querySelector("#copy-button");
-        copyButton.addEventListener("click", () => {
-            const resultText = document.querySelector(".copy").response_text;
-            const copyText = document.createElement("textarea");
-            copyText.value = response_text;
-            document.body.appendChild(copyText);
-            copyText.select();
-            document.execCommand("copy");
-            document.body.removeChild(copyText);
-            const copiedSpan = document.querySelector(".copied");
-            copiedSpan.textContent = "Texte copié !";
-            copiedSpan.style.right = "0";
-            setTimeout(() => {
-                copiedSpan.style.right = "-9999px";
-            }, 1000);
-        });
-
+       
     });
 
 
