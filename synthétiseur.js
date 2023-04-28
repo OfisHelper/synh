@@ -48,15 +48,6 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
         
-        function copyText() {
-          const textToCopy = document.getElementById('myDiv').innerText;
-          const tempInput = document.createElement('input');
-          tempInput.value = textToCopy;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand('copy');
-          document.body.removeChild(tempInput);
-        }
 
         const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button onclick="copyText()">Copier le texte</button></center>`;
         console.log(body.choices[0])
