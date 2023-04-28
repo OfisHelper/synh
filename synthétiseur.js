@@ -49,7 +49,28 @@ app.post('/generate', (req, res) => {
         }).join('');
         
 
-        const response_text = `<script>function copyText() {const textToCopy = document.getElementById('myDiv').innerText;const tempInput = document.createElement('input');tempInput.value = textToCopy;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);}</script><center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button class="copy-button" onclick="copyText()">Copier le texte</button></center>`;
+        const response_text = `<style>.copy-button {
+  display: inline-block;
+  background-color: #ffeba7;
+  color: #333;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.copy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.copy-button:active {
+  transform: translateY(0px);
+  box-shadow: none;
+</style><script>function copyText() {const textToCopy = document.getElementById('myDiv').innerText;const tempInput = document.createElement('input');tempInput.value = textToCopy;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);}</script><center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button style="copy-button" onclick="copyText()">Copier le texte</button></center>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
