@@ -48,7 +48,12 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2></center> <br> <div style="font-size: 20px; color: white; -webkit-touch-callout: text; /* iOS Safari */-webkit-user-select: text; /* Safari, Chrome, Opera, Samsung */-khtml-user-select: text; /* Konqueror HTML */-moz-user-select: text; /* Firefox */-ms-user-select: text; /* Edge, IE */user-select: text; /* Modern browsers */">${result}</div>`;
+        const response_text = `<center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2></center> <br> <div style="font-size: 20px; color: white; -webkit-touch-callout: text;-webkit-touch-callout:text; /* iOS Safari */
+  -webkit-user-select:text;   /* Chrome/Safari/Opera */
+  -khtml-user-select:text;    /* Konqueror */
+  -moz-user-select:text;      /* Firefox */
+  -ms-user-select:text;       /* Internet Explorer/Edge */
+  user-select:text;           /* Non-prefixed version */">${result}</div>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
