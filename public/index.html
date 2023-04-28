@@ -41,11 +41,23 @@
           generateButton.style.display = "none";
           loader.style.display = "inline-block";
         });
+
+        const copyButton = document.querySelector("#copy-button");
+        const resultDiv = document.querySelector("#result");
+        copyButton.addEventListener("click", () => {
+          const range = document.createRange();
+          range.selectNode(resultDiv);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          document.execCommand("copy");
+          window.getSelection().removeAllRanges();
+        });
       </script>
     </form>
     <div id="result"></div>
-    <button id="copy-button" style="display:none;">Copier le texte en noir</button>
     <script src="script.js"></script>
+    <button id="copy-button" style="display:none;">Copier le texte en noir</button>
     </center>
   </body>
 </html>
+
