@@ -48,7 +48,7 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;">${result}</div><button id="copy-button" style="color:black; font-size: 20px;">Copier le texte en noir</button><span class="copied" style="position:absolute; right:-9999px"></span>`;
+        const response_text = `<center><h2 style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><svg><div style="fill: white; color:white; font-size: 20px;">${result}</div></svg>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
