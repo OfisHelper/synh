@@ -637,7 +637,7 @@ button{
   100% { transform: rotate(360deg); }
 }
 
-#copy-button{
+copyButton{
     font-family: 'Ubuntu', sans-serif;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -656,13 +656,13 @@ button{
     border: 0px solid #ffab3c;
   }
 
-  #copy-button{
+  copyButton{
     border: 3px solid #ffab3c;
     background: #f0f0f0;
     color: #ffab3c;
   }
 
-  #copy-button{
+  copyButton{
     opacity: 1;
     visibility: visible;
     transition: all .35s;
