@@ -48,10 +48,28 @@ app.post('/generate', (req, res) => {
             return `<p>${line}</p>`;
         }).join('');
 
-        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;">${result}</div><span class="copied" style="position:absolute; right:-9999px"></span>`;
+        const response_text = `<center><h2 class="copy" style="font-weight: 600; font-size: 3vw; color:white;">Résultat :</h2></center><br><div class="copy" style="color:white; font-size: 20px;">${result}</div><button id="copy-button" style="color:black; font-size: 20px;">Copier le texte en noir</button><span class="copied" style="position:absolute; right:-9999px"></span>`;
         console.log(body.choices[0])
         res.send(response_text);
-        console.log(response_text )
+        console.log(response_text );
+
+        const copyButton = document.querySelector("#copy-button");
+        copyButton.addEventListener("click", () => {
+            const resultText = document.querySelector(".copy").textContent;
+            const copyText = document.createElement("textarea");
+            copyText.value = resultText;
+            document.body.appendChild(copyText);
+            copyText.select();
+            document.execCommand("copy");
+            document.body.removeChild(copyText);
+            const copiedSpan = document.querySelector(".copied");
+            copiedSpan.textContent = "Texte copié !";
+            copiedSpan.style.right = "0";
+            setTimeout(() => {
+                copiedSpan.style.right = "-9999px";
+            }, 1000);
+        });
+
     });
 
 
