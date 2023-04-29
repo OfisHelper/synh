@@ -49,7 +49,38 @@ app.post('/generate', (req, res) => {
         }).join('');
         
 
-        const response_text = `<style>.copy-button {display: inline-block;background-color: #ffab3c;color: #F0F0F0;border-radius: 40px;font-size: 18px;font-bold: 600;padding: 12px 32px;margin-top: 20px;text-decoration: none;transition: all 0.3s ease-in-out;}.copy-button:hover {transform: translateY(-2px);box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);}.copy-button:active {transform: translateY(0px);box-shadow: none;}</style><script>function copyText() {const textToCopy = document.getElementById('myDiv').innerText;const tempInput = document.createElement('input');tempInput.value = textToCopy;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);}</script><center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button class="copy-button" onclick="copyText()">Copier le texte</button></center>`;
+        const response_text = `<style>.copy-button {display: .copy-button{
+  all: unset;
+  font-family: 'Ubuntu', sans-serif;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 40px;
+  line-height: 1;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: #ffab3c;
+  color: #f0f0f0;
+  border-radius: 40px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all .35s;
+  border: 0px solid #ffab3c;
+}
+
+.copy-button:hover{
+  border: 3px solid #ffab3c;
+  background: #f0f0f0;
+  color: #ffab3c;
+}
+
+.copy-button span{
+  opacity: 1 ;
+  visibility: visible ;
+  transition: all .35s;
+}
+</style><script>function copyText() {const textToCopy = document.getElementById('myDiv').innerText;const tempInput = document.createElement('input');tempInput.value = textToCopy;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);}</script><center><h2 style="font-weight:600;font-size:3vw;color:white;">Résultat :</h2> <br> <div id="myDiv" style="font-size: 20px; color: white;">${result}</div><br><button class="copy-button" onclick="copyText()">Copier le texte</button></center>`;
         console.log(body.choices[0])
         res.send(response_text);
         console.log(response_text );
