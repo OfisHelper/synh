@@ -67,6 +67,7 @@ app.post('/generate', (req, res) => {
   overflow: hidden;
   transition: all .35s;
   border: 0px solid #ffab3c;
+  margin-top: 20px;
 }
 
 .copy-button:hover{
